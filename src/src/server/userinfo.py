@@ -1,5 +1,11 @@
-from typing import Literal
+""" 用户信息模块
 
+提供了一个用户信息类，用来解析和存储用户信息
+
+Classes:
+    UserInfo(object): 用户信息类
+
+"""
 
 class UserInfo:
     def __init__(self, id:str, passwd:str, permission:tuple[bool, bool, bool, bool]) -> None:
@@ -39,14 +45,19 @@ class UserInfo:
         Args:
             s: 一个包含用户信息的字符串，
                 user_id user_passwd per_msg_d per_msg_u per_file_d per_file_u \n
-                其中用空白字符分隔
+                其中用英文逗号分隔
         '''
-        tokens = s.split()
+        tokens = s.split(',')
         if len(tokens) != 6:
             raise ValueError(f'Length of tokens should be 6, given {len(tokens)}')
         per = []
         for i in tokens[2:]:
-            per.append(bool(i))
-        return UserInfo(tokens[0], tokens[1], per)
-    
+            i = i.strip()
+            if i == '0' or i.lower() == 'false':
+                per.append(False)
+            elif i == '1' or i.lower() == 'true':
+                per.append(True)
+            else:
+                raise ValueError('用户列表文件格式不正确')
+        return UserInfo(tokens[0].strip(), tokens[1].strip(), per)
 

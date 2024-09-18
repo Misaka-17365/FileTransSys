@@ -1,0 +1,28 @@
+{
+    // 服务器配置
+    "name": "SERVER-1",
+    "ip": "0.0.0.0",
+    "port": "9000",
+
+    // 用户权限总设置
+    "permission": {
+        // 消息权限
+        "allUserGetMessage": true,
+        "allUserPutMessage": false,
+        "distributeMessage": true,
+        // 文件权限
+        "allUserGetFilelist": true,
+        "allUserDownloadFile": true,
+        "allUserUploadFile": false
+    },
+    // 共享文件夹路径
+    "shareDir": "./public",
+    // 用户列表文件路径(.csv文件)
+    "userlistFile": "./userlist.csv",
+
+    // 日志输出路径
+    "logPath": "./server.log",
+
+    // 开启服务器IP地址广播
+    "ipBroadcast": true
+}
